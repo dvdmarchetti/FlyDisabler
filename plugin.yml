@@ -1,0 +1,9 @@
+main: org.github.abc33.FlyDisabler
+version: 0.1
+name: FlyDisabler
+author: _abc33_
+commands:
+  flydisabler:
+    description: Reload Config
+    aliases: [fd]
+    usage: /flydisabler reload
