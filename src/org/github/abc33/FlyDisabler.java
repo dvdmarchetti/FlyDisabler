@@ -1,8 +1,27 @@
+/*
+ * FlyDisabler: to manage fly related things on bukkit server.
+ * Copyright (C) 2013 _abc33_
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 package org.github.abc33;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bukkit.Bukkit;
@@ -25,7 +44,7 @@ public class FlyDisabler extends JavaPlugin implements Listener {
 	@Override
 	public void onEnable() {
 		log.info("[FlyDisabler] Plugin author: _abc33_");
-		log.info("[FlyDisabler] Check configuration.");
+		log.info("[FlyDisabler] Checking configuration...");
 		createConfig();
 		
 		/* Event Handlers */
@@ -34,11 +53,14 @@ public class FlyDisabler extends JavaPlugin implements Listener {
 	
 	private void createConfig(){
 		if (!getDataFolder().exists()){
+			log.info("[FlyDisabler] Data folder not found! Attempting to create it...");
 			getDataFolder().mkdir();
-			log.info("[FlyDisabler] Data folder created.");
+			if (!getDataFolder().exists()){
+				log.log(Level.SEVERE, "[FlyDisabler] Unable to create data folder!");
+			}
 		}
 		if (getDataFolder().listFiles().length == 0){
-			log.info("[FlyDisabler] Creating default configuration.");
+			log.info("[FlyDisabler] Default configuration created.");
 			List<String> defWorlds = Arrays.asList("world1","world2");
 			this.getConfig().set("worldsDisableFly", defWorlds);
 		
