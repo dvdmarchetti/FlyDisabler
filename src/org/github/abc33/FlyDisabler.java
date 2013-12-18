@@ -19,6 +19,7 @@
 package org.github.abc33;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,6 +35,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.mcstats.Metrics;
 
 public class FlyDisabler extends JavaPlugin implements Listener {
 	public final File fConfig = new File(getDataFolder(), "config.yml");
@@ -46,6 +48,19 @@ public class FlyDisabler extends JavaPlugin implements Listener {
 		log.info("[FlyDisabler] Plugin author: _abc33_");
 		log.info("[FlyDisabler] Checking configuration...");
 		createConfig();
+		
+		/* Integrate with Metrics */
+		if (!getConfig().getBoolean("opt-out")){
+			try {
+			    Metrics metrics = new Metrics(this);
+			    metrics.start();
+			    log.info("[FlyDisabler] Metrics integration enabled.");
+			} catch (IOException e) {
+			   	log.log(Level.SEVERE, "[FlyDisabler] Could not reach Metrics service! Stats will not be taken.");
+			}
+		} else {
+			this.log.info("[FlyDisabler] Metrics is opted-out, so it will not collect stats.");
+		}
 		
 		/* Event Handlers */
 		pm.registerEvents(this, this);
@@ -62,6 +77,8 @@ public class FlyDisabler extends JavaPlugin implements Listener {
 		if (getDataFolder().listFiles().length == 0){
 			log.info("[FlyDisabler] Default configuration created.");
 			List<String> defWorlds = Arrays.asList("world1","world2");
+			
+			this.getConfig().set("opt-out", Boolean.valueOf(false));
 			this.getConfig().set("worldsDisableFly", defWorlds);
 		
 			this.saveConfig();
