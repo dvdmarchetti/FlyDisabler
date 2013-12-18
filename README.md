@@ -21,6 +21,8 @@ worldsDisableFly:
 ```
 
 It simply prevents users from flying in world1 and world2.
+
+You only have to modify the config.yml file, then reload with command.
 ___
 Permissions
 ===========
