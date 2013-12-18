@@ -35,7 +35,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mcstats.Metrics;
 
 public class FlyDisabler extends JavaPlugin implements Listener {
 	public final File fConfig = new File(getDataFolder(), "config.yml");
@@ -114,7 +113,7 @@ public class FlyDisabler extends JavaPlugin implements Listener {
 					sender.sendMessage(this.prefix + "Command not found!");
 				}
 			} else {
-				sender.sendMessage(this.prefix + "Author: _abc33_ || Version: 0.1");
+				sender.sendMessage(this.prefix + "Author: _abc33_ || Version: 0.2");
 			}
 			return true;
 		}
