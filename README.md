@@ -1,17 +1,15 @@
 FlyDisabler
 ===========
 Simple and lightweight bukkit plugin to prevent flying on specified worlds.
-
+___
 Installation
 ============
 You only have to download and put this plugin into plugins folder of your server.
 Then start and stop server. The plugin will generate a sample configuration file.
 Now edit your config adding the name of the worlds where you want to disable fly.
-_______________
-###You're done!
-_______________
+####You're done!
 Now just start the server!
-
+___
 Configuration
 =============
 This is the default configuration:
@@ -23,7 +21,7 @@ worldsDisableFly:
 ```
 
 It simply prevents users from flying in world1 and world2.
-
+___
 Permissions
 ===========
 Note: You can use **/fd** instead of **/flydisabler** as an alias.
