@@ -15,9 +15,16 @@ Configuration
 This is the default configuration:
 
 ```
+opt-out: false
+allowCreativeFlying: false
+messages:
+  noFly: You can't fly in this world!
+  noPerms: §cYou don't have permissions to do this!
+  reload: Configuration reloaded!
 worldsDisableFly:
-- world1
+- world
 - world2
+
 ```
 
 It simply prevents users from flying in world1 and world2.
